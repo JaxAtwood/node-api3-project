@@ -3,6 +3,9 @@ const User = require("./userDb");
 const Post = require("../posts/postDb");
 
 const router = express.Router();
+const cors = require('cors');
+
+router.use(cors());
 
 
 //insert(): calling insert passing it a resource object will add it to the database and return the new resource.

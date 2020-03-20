@@ -1,35 +1,34 @@
-// import React from 'react';
-// import axios from "axios";
+import React from 'react';
+import axios from "axios";
 
-// function FetchUsers() {
+function FetchUsers() {
 
-//     const [users, setUsers] = React.useState([]);
+    const [users, setUsers] = React.useState();
   
-//     React.useEffect(() => {
+    React.useEffect(() => {
+      axios
+          .get("http://localhost:5000/api/users")
+          .then(res => {
+              console.log(res.data);
+              setUsers(res.data);
+          });
+    }, []);
   
-//       axios
-//           .get("http://localhost:5000/api/users")
-//           .then(res => {
-//               console.log(res.data);
-//               setUsers(res.data.results);
-//           });
-//     }, []);
-  
-//     if (!users) {
-//       return (<div>Loading Information</div>)
-//     }
+    if (!users) {
+      return (<div>Loading Information</div>)
+    }
 
-//   return (
-//     <div>
-//     {users.map(user => {
-//       return (
-//         <div>
-//             <h3>User: {user.name}</h3>
-//         </div>
-//       );
-//     })}
-//   </div>
-//   );
-// }
+  return (
+    <div>
+    {users.map(user => {
+      return (
+        <div>
+            <h3>User: {user.name}</h3>
+        </div>
+      );
+    })}
+  </div>
+  );
+}
 
-// export default FetchUsers;
+export default FetchUsers;
